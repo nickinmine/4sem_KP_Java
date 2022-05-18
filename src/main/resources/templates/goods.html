@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Товары</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../static/css/goods.css" th:href="@{/css/goods.css}" rel="stylesheet" />
+    <link href="../static/css/burger-header.css" th:href="@{/css/burger-header.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="page">
+    <header class="header">
+        <div class="header-container">
+            <div class="header-menu">
+                <div class="menu-burger">
+                    <span></span>
+                </div>
+                <nav class="menu-body">
+                    <ul class="menu-list">
+                        <div onclick="document.location.href='/reg'">Регистрация</div>
+                        <div onclick="document.location.href='/'">Домашняя</div>
+                        <div class="Button CurrentPage" onclick="document.location.href='/goods'">Товары</div>
+                        <div onclick="document.location.href='/car'">Корзина</div>
+                        <div th:if="${role} == 'admin'" ><div onclick="document.location.href='/settings'">Настройки</div></div>
+                    </ul>
+                </nav>
+            </div>
+            <span class="header-span-text">Товары</span>
+            <a href="/logout" class="subbutton exit-button" title="Выход">Выход</a>
+        </div>
+    </header>
+
+    <main class="main" style="margin-bottom: 100px">
+        <div class="goods">
+            <table class="table">
+                <tr>
+                    <th style="width: 15%"></th>
+                    <th>Название товара</th>
+                    <th>Цена</th>
+                    <th>В наличии, шт</th>
+                    <th>В корзину</th>
+                    <th style="width: 15%"></th>
+                </tr>
+                <th:block th:each="goods : ${goods}">
+                    <tr>
+                        <th style="width: 15%"></th>
+                        <td th:text="${goods.getName()}"></td>
+                        <td><p th:text="${goods.getPrice()}"></p><p> рублей</p></td>
+                        <div th:if="${goods.getCount()} > '0'">
+                            <td th:text="${goods.getCount()}"></td>
+                        </div>
+                        <div th:if="${goods.getCount()} <= '0'">
+                            <td>Нет в наличии</td>
+                        </div>
+                        <td>
+                            <form name="В корзину" method="post" action="/toCar">
+                                <label>
+                                    <input type="hidden" name="name" th:value="${goods.getName()}"/>
+                                </label>
+                                <div style="display: inline-block" th:if="${goods.getCount()} > '0'">
+                                    <label>
+                                        <input type="number" name="count" min="1" th:max="${goods.getCount()}"/>
+                                    </label>
+                                    <button type="submit">В корзину</button>
+                                </div>
+                                <div th:if="${goods.getCount()} <= '0'"></div>
+                            </form>
+                        </td>
+                        <th style="width: 15%"></th>
+                    </tr>
+                </th:block>
+            </table>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+                <span class="footer-span-text1">
+                    Автор сайта: Зубов Николай Андреевич<br>
+                    Студент группы ИКБО-10-20<br>
+                    zubov.n.a@edu.mirea.ru
+                </span>
+            <span class="footer-span-text2">
+                    <a href="https://www.mirea.ru/">https://www.mirea.ru/</a><br>
+                    <address>РТУ МИРЭА. Москва, Проспект Вернадского, 78</address>
+                </span>
+        </div>
+    </footer>
+</div>
+<script src="../static/script/script.js" th:src="@{/script/script.js}"></script>
+</body>
+</html>

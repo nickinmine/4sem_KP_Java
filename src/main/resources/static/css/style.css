@@ -1,0 +1,24 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+main {
+    margin-top: 100px;
+}
+
+.reg-form {
+    padding: 50px;
+    margin: auto;
+    max-width: 400px;
+    box-shadow: 0 3px 14px rgb(0 0 0 / 12%), 0 8px 10px rgb(0 0 0 / 14%), 0 5px 5px rgb(0 0 0 / 20%);
+}

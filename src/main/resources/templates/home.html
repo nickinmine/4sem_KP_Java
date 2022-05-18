@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Домашняя</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+    <link href="../static/css/burger-header.css" th:href="@{/css/burger-header.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="page">
+    <header class="header">
+        <div class="header-container">
+            <div class="header-menu">
+                <div class="menu-burger">
+                    <span></span>
+                </div>
+                <nav class="menu-body">
+                    <ul class="menu-list">
+                        <div onclick="document.location.href='/reg'">Регистрация</div>
+                        <div class="Button CurrentPage" onclick="document.location.href='/'">Домашняя</div>
+                        <div onclick="document.location.href='/goods'">Товары</div>
+                        <div onclick="document.location.href='/car'">Корзина</div>
+                        <div th:if="${role} == 'admin'" ><div onclick="document.location.href='/settings'">Настройки</div></div>
+                    </ul>
+                </nav>
+            </div>
+            <span class="header-span-text">Домашняя</span>
+            <a href="/logout" class="subbutton exit-button" title="Выход">Выход</a>
+        </div>
+
+    </header>
+
+    <main class="main">
+
+
+
+        <div style="margin: 40px 40px 0 40px; display: inline; font-size: 20px">
+            <p style="margin-left: 20px; display: inline;">Имя: </p><p style="display: inline;" th:text="${client.getName()}"></p>
+            <p style="margin-left: 20px; display: inline;">Почта: </p><p style="display: inline;" th:text="${client.getEmail()}"></p>
+            <p style="margin-left: 20px; display: inline;">Роль: </p>
+            <div style="display: inline;" th:if="${client.getRole()} == admin">
+                <p style="display: inline;">Администратор</p>
+            </div>
+            <div style="display: inline;" th:if="${client.getRole()} == user">
+                <p style="display: inline;">Клиент</p>
+            </div>
+            <p style="margin-left: 20px; display: inline;">Адрес: </p><p style="display: inline;" th:text="${client.getAddress()}"></p>
+        </div>
+        <hr>
+        <div style="margin: 40px 40px 0 40px;">
+            <h2 style="margin-top: 20px">Сменить почту</h2>
+            <form name="Сменить почту" method="post" action="/changeMail">
+                <label>
+                    <input type="email" name="email" placeholder="Новая почта"/>
+                </label>
+                <button type="submit">Сменить</button>
+            </form>
+        </div>
+        <div style="margin: 40px 40px 0 40px;">
+            <h2 style="margin-top: 20px">Сменить адрес доставки</h2>
+            <form name="Сменить адрес доставки" method="post" action="/changeAddress">
+                <label>
+                    <input type="text" name="address" placeholder="Новый адрес доставки"/>
+                </label>
+                <button type="submit">Сменить</button>
+            </form>
+        </div>
+
+
+
+
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+                <span class="footer-span-text1">
+                    Автор сайта: Зубов Николай Андреевич<br>
+                    Студент группы ИКБО-10-20<br>
+                    zubov.n.a@edu.mirea.ru
+                </span>
+            <span class="footer-span-text2">
+                    <a href="https://www.mirea.ru/">https://www.mirea.ru/</a><br>
+                    <address>РТУ МИРЭА. Москва, Проспект Вернадского, 78</address>
+                </span>
+        </div>
+    </footer>
+</div>
+<script src="../static/script/script.js" th:src="@{/script/script.js}"></script>
+</body>
+</html>

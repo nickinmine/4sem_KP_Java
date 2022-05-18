@@ -1,0 +1,182 @@
+.header, .footer {
+    left: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    background-color: #245b8e;
+}
+
+.header-container,
+.footer-container {
+    position: relative;
+    margin: 0px;
+    display: flex;
+    padding: 10px 20px;
+    align-items: center;
+    min-height: 50px;
+}
+
+.header-container {
+    justify-content: space-between;
+}
+
+.footer-container {
+    font-family: "Times New Roman";
+    justify-content: space-around;
+    font-size: 14px;
+    color: white;
+}
+
+.header-logo {
+    border-radius: 50%;
+    background-color: white;
+    position: relative;
+    z-index: 5;
+    width: 40px;
+    height: 40px;
+}
+
+.header-span-text {
+    font-family: Cambria;
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    position: relative;
+}
+
+.footer-span-text1 {
+    text-align: left;
+}
+
+.footer-span-text2 {
+    text-align: right;
+}
+
+.footer-span-text2 > a {
+    color: white;
+}
+
+.menu-burger {
+    z-index: 5;
+    display: block;
+    position: relative;
+    width: 25px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.menu-burger span,
+.menu-burger::before,
+.menu-burger::after {
+    left: 0;
+    position: absolute;
+    height: 10%;
+    width: 100%;
+    background-color: white;
+}
+
+.menu-burger::before,
+.menu-burger::after {
+    content: "";
+}
+
+.menu-burger::before {
+    top: 0;
+}
+
+.menu-burger::after {
+    bottom: 0;
+}
+
+.menu-burger span {
+    top: 50%;
+    transform: scale(1) translate(0px, -50%);
+}
+
+.menu-body {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: auto;
+    height: 100%;
+    background-color: #5a769b;
+    padding: 70px 0px 0px 0px;
+    transition: left 0.3s;
+    overflow: auto;
+}
+
+.menu-body.active {
+    left: -0px;
+}
+
+.menu-body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 70px;
+    background-color: #245b8e;
+    z-index: 2;
+}
+
+.menu-list {
+    font-family: Cambria;
+    width: auto;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-list > div {
+    position: center;
+    width: auto;
+    height: 50px;
+    display: flex;
+    margin: 0px 0px 5px 0px;
+    padding: 0px 20px 0px 20px;
+    align-items: center;
+    cursor: pointer;
+    left: 0;
+    right: 0;
+    font-size: 30px;
+    text-align: left;
+    vertical-align: center;
+    color: inherit;
+}
+
+.menu-list > div:hover {
+    background-color: rgba(0,0,0,0.2);
+//background: black;
+}
+
+.menu-list > div:last-child {
+    margin-bottom: 180px;
+}
+
+.menu-list > div.CurrentPage {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.subbutton{
+    font-family: Cambria;
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    position: relative;
+}
+.subbutton:hover{
+    color: #a81aee;
+    cursor: pointer;
+}
+.exit-button > a {
+    text-decoration: none;
+}

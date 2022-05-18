@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Управление товарами</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../../static/css/goods.css" th:href="@{/css/goods.css}" rel="stylesheet" />
+    <link href="../../static/css/burger-header.css" th:href="@{/css/burger-header.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="page">
+    <header class="header">
+        <div class="header-container">
+            <div class="header-menu">
+                <div class="menu-burger">
+                    <span></span>
+                </div>
+                <nav class="menu-body">
+                    <ul class="menu-list">
+                        <div onclick="document.location.href='/reg'">Регистрация</div>
+                        <div onclick="document.location.href='/'">Домашняя</div>
+                        <div onclick="document.location.href='/goods'">Товары</div>
+                        <div onclick="document.location.href='/car'">Корзина</div>
+                        <div class="Button CurrentPage" th:if="${role} == 'admin'" ><div onclick="document.location.href='/settings'">Настройки</div></div>
+                    </ul>
+                </nav>
+            </div>
+            <span class="header-span-text">Управление товарами</span>
+            <a href="/logout" class="subbutton exit-button" title="Выход">Выход</a>
+        </div>
+    </header>
+    <main class="main" style="margin-bottom: 100px">
+        <div style="margin: 40px 40px 0 40px;">
+            <h2>Добавление товара</h2>
+            <form name="Добавление товара" method="post" action="/addGoods">
+                <label>
+                    <input type="text" name="name" placeholder="Имя товара"/>
+                </label>
+                <label>
+                    <input type="number" name="price" placeholder="Цена"/>
+                </label>
+                <label>
+                    <input type="number" name="count" placeholder="Количество"/>
+                </label>
+                <button type="submit">Добавить</button>
+            </form>
+        </div>
+
+        <div style="margin: 40px 40px 0 40px;">
+            <h2>Изменить количество имеющегося товара</h2>
+            <form name="Изменить количество имеющегося товара" method="post" action="/countGoods">
+                <label>
+                    <input type="text" name="name" placeholder="Имя товара"/>
+                </label>
+                <label>
+                    <input type="number" name="count" placeholder="Количество"/>
+                </label>
+                <button type="submit">Изменить</button>
+            </form>
+        </div>
+
+        <div style="margin: 40px 40px 0 40px;">
+            <h2>Изменить цену имеющегося товара</h2>
+            <form name="Изменить цену имеющегося товара" method="post" action="/priceGoods">
+                <label>
+                    <input type="text" name="name" placeholder="Имя товара"/>
+                </label>
+                <label>
+                    <input type="number" name="price" placeholder="Цена"/>
+                </label>
+                <button type="submit">Изменить</button>
+            </form>
+        </div>
+
+        <div style="margin: 40px 40px 0 40px;">
+            <h2>Удаление товара</h2>
+            <form name="Удаление товара" method="post" action="/deleteGoods">
+                <label>
+                    <input type="text" name="name" placeholder="Имя товара"/>
+                </label>
+                <button type="submit">Удалить</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+                <span class="footer-span-text1">
+                    Автор сайта: Зубов Николай Андреевич<br>
+                    Студент группы ИКБО-10-20<br>
+                    zubov.n.a@edu.mirea.ru
+                </span>
+            <span class="footer-span-text2">
+                    <a href="https://www.mirea.ru/">https://www.mirea.ru/</a><br>
+                    <address>РТУ МИРЭА. Москва, Проспект Вернадского, 78</address>
+                </span>
+        </div>
+    </footer>
+</div>
+<script src="../../static/script/script.js" th:src="@{/script/script.js}"></script>
+</body>
+</html>

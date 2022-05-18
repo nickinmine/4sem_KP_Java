@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Управление пользователями</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../../static/css/goods.css" th:href="@{/css/goods.css}" rel="stylesheet" />
+    <link href="../../static/css/burger-header.css" th:href="@{/css/burger-header.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="page">
+    <header class="header">
+        <div class="header-container">
+            <div class="header-menu">
+                <div class="menu-burger">
+                    <span></span>
+                </div>
+                <nav class="menu-body">
+                    <ul class="menu-list">
+                        <div onclick="document.location.href='/reg'">Регистрация</div>
+                        <div onclick="document.location.href='/'">Домашняя</div>
+                        <div onclick="document.location.href='/goods'">Товары</div>
+                        <div onclick="document.location.href='/car'">Корзина</div>
+                        <div class="Button CurrentPage" th:if="${role} == 'admin'" ><div onclick="document.location.href='/settings'">Настройки</div></div>
+                    </ul>
+                </nav>
+            </div>
+            <span class="header-span-text">Управление пользователями</span>
+            <a href="/logout" class="subbutton exit-button" title="Выход">Выход</a>
+        </div>
+    </header>
+
+    <main class="main" style="margin-bottom: 100px">
+        <div style="margin: 40px 40px 0 40px;">
+            <h2>Список пользователей</h2>
+            <table class="table">
+                <tr>
+                    <th style="width: 15%"></th>
+                    <th>Логин</th>
+                    <th>Почта</th>
+                    <th>Роль</th>
+                    <th>Адрес доставки</th>
+                    <th style="width: 15%"></th>
+                </tr>
+                <th:block th:each="client : ${client}">
+                    <tr>
+                        <th style="width: 15%"></th>
+                        <td th:text="${client.getName()}"></td>
+                        <td th:text="${client.getEmail()}"></td>
+                        <td th:text="${client.getRole()}"></td>
+                        <td th:text="${client.getAddress()}"></td>
+                        <th style="width: 15%"></th>
+                    </tr>
+                </th:block>
+            </table>
+        </div>
+
+        <div style="margin: 40px 40px 0 40px;">
+            <h2>Изменить роль пользователя</h2>
+            <form style="display: inline" name="Изменить роль пользователя" method="post" action="/changeRole">
+                <label style="display: inline">
+                    <input style="display: inline" type="text" name="name" placeholder="Логин"/>
+                </label>
+                <div style="display: inline">
+                    <div style="display: inline">
+                        <input style="display: inline" type="radio" name="role" id="gridRadios1" value="user">
+                        <label style="display: inline" for="gridRadios1">Клиент</label>
+                    </div>
+                    <div style="display: inline">
+                        <input style="display: inline" type="radio" name="role" id="gridRadios2" value="admin">
+                        <label style="display: inline" for="gridRadios2">Администратор</label>
+                    </div>
+                </div>
+                <button style="display: inline" type="submit">Изменить</button>
+            </form>
+        </div>
+
+        <div style="margin: 40px 40px 0 40px;">
+            <h2>Удалить пользователя</h2>
+            <form style="display: inline" name="Удалить пользователя" method="post" action="/deleteClient">
+                <label style="display: inline">
+                    <input style="display: inline" type="text" name="name" placeholder="Имя пользователя"/>
+                </label>
+                <button style="display: inline" type="submit">Удалить</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+                <span class="footer-span-text1">
+                    Автор сайта: Зубов Николай Андреевич<br>
+                    Студент группы ИКБО-10-20<br>
+                    zubov.n.a@edu.mirea.ru
+                </span>
+            <span class="footer-span-text2">
+                    <a href="https://www.mirea.ru/">https://www.mirea.ru/</a><br>
+                    <address>РТУ МИРЭА. Москва, Проспект Вернадского, 78</address>
+                </span>
+        </div>
+    </footer>
+</div>
+<script src="../../static/script/script.js" th:src="@{/script/script.js}"></script>
+</body>
+</html>

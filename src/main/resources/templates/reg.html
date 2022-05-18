@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+    <link href="../static/css/burger-header.css" th:href="@{/css/burger-header.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="page">
+    <header class="header">
+        <div class="header-container">
+            <div class="header-menu">
+                <div class="menu-burger">
+                    <span></span>
+                </div>
+                <nav class="menu-body">
+                    <ul class="menu-list">
+                        <div class="Button CurrentPage" onclick="document.location.href='/reg'">Регистрация</div>
+                        <div onclick="document.location.href='/'">Домашняя</div>
+                        <div onclick="document.location.href='/goods'">Товары</div>
+                        <div onclick="document.location.href='/car'">Корзина</div>
+                        <div th:if="${role} == 'admin'" ><div onclick="document.location.href='/settings'">Настройки</div></div>
+                    </ul>
+                </nav>
+            </div>
+            <span class="header-span-text">Регистрация</span>
+            <a href="/logout" class="subbutton exit-button" title="Выход">Выход</a>
+        </div>
+    </header>
+
+    <main class="main">
+    <div class="reg-form">
+        <form name="registration" method="post" action="/sign">
+            <div>
+                <label for="usernameInput">Введите имя</label>
+                <div>
+                    <input id="usernameInput" name="name" type="text" required>
+                </div>
+            </div>
+            <div>
+                <label for="passwordInput">Введите пароль</label>
+                <div>
+                    <input id="passwordInput" name="pass" type="password" required>
+                </div>
+            </div>
+            <div>
+                <label for="matchingPasswordInput">Повторите пароль</label>
+                <div>
+                    <input id="matchingPasswordInput" name="pass2" type="password" required>
+                </div>
+            </div>
+            <div>
+                <label for="mailInput">Введите электронную почту</label>
+                <div>
+                    <input id="mailInput" name="email" type="email" required>
+                </div>
+            </div>
+            <div>
+                <label for="addressInput">Введите адрес доставки</label>
+                <div>
+                    <input id="addressInput" name="address" type="text" required>
+                </div>
+            </div>
+            <label>
+                <input type="hidden" name="role" value="user"/>
+            </label>
+            <br><button type="submit">Зарегистрироваться</button><br>
+            <div th:if="${Status} == 'incorrect_pass'">
+                Пароли не совпадают!
+            </div>
+            <div th:if="${Status} == 'existed_user'">
+                Пользователь с таким именем уже существует!
+            </div>
+            <br><a class="nav-link" href="login">Уже зарегистрированы? Войти</a>
+        </form>
+    </div>
+    <!--div style="margin-top: 60px">&#160;</div-->
+    </main>
+
+
+    <footer class="footer">
+        <div class="footer-container">
+                <span class="footer-span-text1">
+                    Автор сайта: Зубов Николай Андреевич<br>
+                    Студент группы ИКБО-10-20<br>
+                    zubov.n.a@edu.mirea.ru
+                </span>
+            <span class="footer-span-text2">
+                    <a href="https://www.mirea.ru/">https://www.mirea.ru/</a><br>
+                    <address>РТУ МИРЭА. Москва, Проспект Вернадского, 78</address>
+                </span>
+        </div>
+    </footer>
+</div>
+<script src="../static/script/script.js" th:src="@{/script/script.js}"></script>
+</body>
+</html>

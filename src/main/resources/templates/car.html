@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Корзина</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+    <link href="../static/css/burger-header.css" th:href="@{/css/burger-header.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="page">
+    <header class="header">
+        <div class="header-container">
+            <div class="header-menu">
+                <div class="menu-burger">
+                    <span></span>
+                </div>
+                <nav class="menu-body">
+                    <ul class="menu-list">
+                        <div onclick="document.location.href='/reg'">Регистрация</div>
+                        <div onclick="document.location.href='/'">Домашняя</div>
+                        <div onclick="document.location.href='/goods'">Товары</div>
+                        <div class="Button CurrentPage" onclick="document.location.href='/car'">Корзина</div>
+                        <div th:if="${role} == 'admin'" ><div onclick="document.location.href='/settings'">Настройки</div></div>
+                    </ul>
+                </nav>
+            </div>
+            <span class="header-span-text">Корзина</span>
+            <a href="/logout" class="subbutton exit-button" title="Выход">Выход</a>
+        </div>
+
+    </header>
+
+    <main class="main" style="margin-bottom: 100px">
+
+        <div style="margin: 40px 40px 0 40px;">
+            <h2>Корзина</h2>
+            <table class="table">
+                <tr>
+                    <th style="width: 15%"></th>
+                    <th>Наименование</th>
+                    <th>Цена</th>
+                    <th>Количество</th>
+                    <th></th>
+                    <th style="width: 15%"></th>
+                </tr>
+                <th:block th:each="car : ${car}">
+                    <tr>
+                        <th style="width: 15%"></th>
+                        <td th:text="${car.getGoods().getName()}"></td>
+                        <td><p style="display: inline" th:text="${car.getGoods().getPrice()}"></p><p style="display: inline">&#160;рублей</p></td>
+                        <td th:text="${car.getCount()}"></td>
+                        <td>
+                            <form name="Удалить из корзины" method="post" action="/removeFromCar">
+                                <label>
+                                    <input type="hidden" name="count" th:value="${car.getCount()}"/>
+                                </label>
+                                <label>
+                                    <input type="hidden" name="id" th:value="${car.getId()}"/>
+                                </label>
+                                <button type="submit">Удалить из корзины</button>
+                            </form>
+                        </td>
+                        <th style="width: 15%"></th>
+                    </tr>
+                </th:block>
+            </table>
+            <div style="display: inline"><b style="display: inline">Общая стоимость </b><p style="display: inline" th:text="${sum}"></p><p style="display: inline"> рублей</p>
+                <form style="display: inline" name="Сделать заказ" method="post" action="/order">
+                    <label>
+                        <input type="hidden" name="id" th:value="1"/>
+                    </label>
+                    <button type="submit">Сделать заказ</button>
+                </form>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+                <span class="footer-span-text1">
+                    Автор сайта: Зубов Николай Андреевич<br>
+                    Студент группы ИКБО-10-20<br>
+                    zubov.n.a@edu.mirea.ru
+                </span>
+            <span class="footer-span-text2">
+                    <a href="https://www.mirea.ru/">https://www.mirea.ru/</a><br>
+                    <address>РТУ МИРЭА. Москва, Проспект Вернадского, 78</address>
+                </span>
+        </div>
+    </footer>
+</div>
+<script src="../static/script/script.js" th:src="@{/script/script.js}"></script>
+</body>
+</html>

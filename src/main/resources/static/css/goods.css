@@ -1,0 +1,22 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+main {
+    margin-top: 100px;
+}
+
+p {
+    display: inline;
+}
+
+.table {
+    width: 100%;
+}
+
+.table > :not(caption) > * > * {
+    padding: 0.5rem 0.5rem;
+}
